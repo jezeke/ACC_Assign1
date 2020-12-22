@@ -1,0 +1,16 @@
+CC = gcc
+CFLAGS = -lpthread
+
+all: server
+
+server.o: server.c server.h
+	$(CC) $(CFLAGS) server.c -c
+
+common.o: common.c common.h
+	$(CC) $(CFLAGS) common.c -c
+
+server: server.o common.o
+	$(CC) $(CFLAGS) server.o common.o -o server
+
+clean:
+	rm client server client.o server.o common.o
